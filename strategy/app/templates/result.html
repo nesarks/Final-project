@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Investment Strategy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #0b3d91;
+            margin-top: 30px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        ul {
+            width: 50%;
+            margin: 20px auto;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            background: #e0ecff;
+            border: 1px solid #bdd7ff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        a {
+            color: #0b3d91;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        li a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #0b3d91;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Your Predicted Investment Strategy:</h2>
+    <p><strong>{{ strategy }}</strong></p>
+    
+    <h3>Recommended Stocks:</h3>
+    {% if recommended_stocks %}
+        <ul>
+            {% for stock in recommended_stocks %}
+                <li><a href="{{ url_for('main.stock_detail', ticker=stock) }}">{{ stock }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stocks found for this strategy.</p>
+    {% endif %}
+
+    <a href="/" class="back-link">Go Home</a>
+</body>
+</html>

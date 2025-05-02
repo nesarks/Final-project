@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ ticker }} Stock Details</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0b3d91;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin: 4px 0;
+        }
+
+        #chart {
+            margin-top: 40px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #0b3d91;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ ticker }} - Stock Details</h2>
+
+        <div class="info">
+            <p><strong>Company:</strong> {{ info.get('shortName', 'N/A') }}</p>
+            <p><strong>Sector:</strong> {{ info.get('sector', 'N/A') }}</p>
+            <p><strong>Market Cap:</strong> {{ info.get('marketCap', 'N/A') }}</p>
+            <p><strong>1-Year High:</strong> ₹{{ "{:,.2f}".format(high) }}</p>
+            <p><strong>1-Year Low:</strong> ₹{{ "{:,.2f}".format(low) }}</p>
+        </div>
+
+        <div id="chart"></div>
+
+        <a href="/predict">Back to Results</a>
+    </div>
+
+    <script>
+        const historicalData = JSON.parse('{{ hist | tojson | safe }}');
+        const trace = {
+            x: historicalData.map(row => row.Date),
+            open: historicalData.map(row => row.Open),
+            high: historicalData.map(row => row.High),
+            low: historicalData.map(row => row.Low),
+            close: historicalData.map(row => row.Close),
+            type: 'candlestick',
+            xaxis: 'x',
+            yaxis: 'y'
+        };
+
+        const layout = {
+            title: '{{ ticker }} Candlestick Chart (1 Year)',
+            xaxis: { title: 'Date', rangeslider: { visible: false } },
+            yaxis: { title: 'Price (₹)' }
+        };
+
+        Plotly.newPlot('chart', [trace], layout);
+    </script>
+</body>
+</html>

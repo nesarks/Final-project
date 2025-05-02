@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Strategy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0b3d91;
+            margin-top: 40px;
+        }
+
+        form {
+            width: 60%;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 50, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #0b3d91;
+            font-weight: bold;
+        }
+
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #0b3d91;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #083173;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #0b3d91;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter Your Details</h2>
+    <form method="POST">
+        <label>Financial Goal:</label>
+        <select name="goal" title="Select your financial goal">
+            <option value="wealth growth">Wealth Growth</option>
+            <option value="retirement">Retirement</option>
+            <option value="education">Education</option>
+            <option value="short-term savings">Short-Term Savings</option>
+        </select><br>
+
+        <label>Risk Tolerance:</label>
+        <select name="risk" title="Select your risk tolerance">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select><br>
+
+        <label>Investment Horizon:</label>
+        <select name="horizon" title="Select your investment horizon">
+            <option value="short">Short</option>
+            <option value="medium">Medium</option>
+            <option value="long">Long</option>
+        </select><br>
+
+        <input type="submit" value="Predict Strategy">
+    </form>
+</body>
+</html>
